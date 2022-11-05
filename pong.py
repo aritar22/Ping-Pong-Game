@@ -6,6 +6,10 @@ win_length = 500
 window = display.set_mode((700,500))
 display.set_caption("Game")
 background = transform.scale(image.load("background_brown.png"),(700, 500))
+p1 = transform.scale(image.load("block_narrow.png"), (20, 100))
+p2 = transform.scale(image.load("block_narrow.png"), (20, 100))
+
+
 clock= time.Clock()
 FPS=60
 class GameSprite(sprite.Sprite):
@@ -43,6 +47,8 @@ class Ball(GameSprite):
 game= True
 while game != False:
     window.blit(background,(0,0))
+    window.blit(p1,(75, 200))
+    window.blit(p2,(625, 200))
     for e in event.get():
         if e.type == QUIT:
             game = False
