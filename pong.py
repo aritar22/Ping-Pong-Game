@@ -5,18 +5,15 @@ win_width = 700
 win_length = 500
 window = display.set_mode((700,500))
 display.set_caption("Game")
-background = transform.scale(image.load("background_brown.png"),(700, 500))
-p1 = transform.scale(image.load("block_narrow.png"), (20, 100))
-p2 = transform.scale(image.load("block_narrow.png"), (20, 100))
+
 
 
 clock= time.Clock()
 FPS=60
 class GameSprite(sprite.Sprite):
-    def __init__(self, player_image, player_x, player_y, player_speed):
+    def __init__(self, player_image, player_x, player_y, speed):
         super().__init__()
-        self.image =  transform.scale(image.load(player_image), (65,65))
-        self.speed = player_speed
+        self.image =  transform.scale(image.load(player_image), (20,100))
         self.rect = self.image.get_rect()
         self.rect.x = player_x
         self.rect.y = player_y
@@ -44,11 +41,16 @@ class Ball(GameSprite):
             self.rect.x = (0,0)
             self.rect.y = -10
             lost=lost + 1   
+
+background = transform.scale(image.load("background_brown.png"),(700, 500))
+p1 = Paddle("block_narrow.png", 75, 200, 6)
+p2 = Paddle("block_narrow.png", 625, 200,6)
+
 game= True
 while game != False:
     window.blit(background,(0,0))
-    window.blit(p1,(75, 200))
-    window.blit(p2,(625, 200))
+    p1.draw()
+    p2.draw()
     for e in event.get():
         if e.type == QUIT:
             game = False
